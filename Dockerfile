@@ -25,5 +25,5 @@ RUN apt-get -qq update && \
     chmod +x ./kubectl && \
     mv ./kubectl /usr/local/bin/kubectl && \
     curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash \
-    curl -fsSL https://deb.nodesource.com/setup_lts.x |  bash - && apt-get install -y nodejs npm \
-    npm i -g n && n lts
+    curl -fsSL https://deb.nodesource.com/setup_lts.x |  bash - && apt-get install -y nodejs npm && npm install -g n && n lts
+    
