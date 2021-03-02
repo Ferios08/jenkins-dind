@@ -23,9 +23,9 @@ did:
       memory: 2Gi
 
 ## Set the admin user
-adminUser: split
+adminUser: admin
 ## Make sure to replace the default password
-adminPassword: 08
+adminPassword: split
 service:
   name: jenkins-k8s
   type: LoadBalancer
