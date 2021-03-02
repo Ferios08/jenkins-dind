@@ -19,11 +19,15 @@ RUN /usr/local/bin/install-plugins.sh $(cat /usr/share/jenkins/plugins.txt) && \
 
 # Install Docker, kubectl and helm
 RUN apt-get -qq update && \
-    apt-get -qq -y install curl && \
+    apt-get -qq -y install curl gcc g++ make && \
     curl -sSL https://get.docker.com/ | sh && \
     curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     chmod +x ./kubectl && \
     mv ./kubectl /usr/local/bin/kubectl && \
     curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash \
-    curl -fsSL https://deb.nodesource.com/setup_lts.x |  bash - && apt-get install -y nodejs npm && npm install -g n && n lts
+    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
+    curl -fsSL https://deb.nodesource.com/setup_lts.x |  bash - && apt update \
+    apt-get install -y nodejs && apt-get install -y yarn
+    
     
