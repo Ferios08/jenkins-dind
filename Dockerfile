@@ -19,7 +19,7 @@ RUN /usr/local/bin/install-plugins.sh $(cat /usr/share/jenkins/plugins.txt) && \
 
 # Install Docker, kubectl and helm
 RUN apt-get -qq update && \
-    apt-get -qq -y install curl gcc g++ make && \
+    apt-get -qq -y install curl && \
     curl -sSL https://get.docker.com/ | sh && \
     curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     chmod +x ./kubectl && \
