@@ -26,7 +26,7 @@ RUN apt-get -qq update && \
     mv ./kubectl /usr/local/bin/kubectl && \
     curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash  && \
     curl -fsSL https://deb.nodesource.com/setup_lts.x |  bash -  &&\
-    apt update && apt-get install -y nodejs && npm install -g yarn
+    apt update && apt-get install -y nodejs && npm i -g n && n 14.15.4 && npm install -g yarn
 
     
     
