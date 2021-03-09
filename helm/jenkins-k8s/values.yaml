@@ -28,7 +28,7 @@ adminUser: admin
 adminPassword: split
 service:
   name: jenkins-k8s
-  type: ClusterIP
+  type: clusterIP
   # type: LoadBalancer
   ## Whitelist the IPs that can access Jenkins
   loadBalancerSourceRanges:
