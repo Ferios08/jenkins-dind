@@ -9,10 +9,6 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
-{{- if .Values.service.loadBalancerSourceRanges }}
-  loadBalancerSourceRanges:
-{{ toYaml .Values.service.loadBalancerSourceRanges | indent 4 }}
-{{- end }}
   ports:
     - port: {{ .Values.service.externalPort }}
       targetPort: {{ .Values.service.internalPort }}
@@ -21,3 +17,27 @@ spec:
   selector:
     app: {{ template "jenkins-k8s.name" . }}
     release: {{ .Release.Name }}
+
+---
+
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: jenkins
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+    - hosts:
+        - jenkins.thetestpad.com
+      secretName: jenkins-k8s-tls
+  rules:
+    - host: jenkins.thetestpad.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: jenkins-jenkins-k8s
+              servicePort: 8080
