@@ -41,16 +41,3 @@ spec:
             backend:
               serviceName: jenkins-jenkins-k8s
               servicePort: 8080
-
-kind: Service
-apiVersion: v1
-metadata:
-  name:  Service Name
-spec:
-  selector:
-    app:  Selector Label
-  type:  LoadBalancer | ClusterIP | NodePort
-  ports:
-  - name:  name-of-the-port
-    port:  80
-    targetPort:  8080
